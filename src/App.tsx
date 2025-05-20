@@ -1,6 +1,7 @@
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import { Layout } from "antd";
 import { useAuth0 } from "@auth0/auth0-react";
+import config from "@config/constants";
 
 import NavBar from "@components/NavBar";
 import Home from "@components/Home";
@@ -18,7 +19,7 @@ const App = () => {
   if (error) return <div>Oops... {error.message}</div>;
 
   return (
-    <Router>
+    <Router basename={config.app}>
       <Layout className="layout">
         <NavBar />
         <Content style={{ padding: '50px', minHeight: 'calc(100vh - 64px)' }}>
