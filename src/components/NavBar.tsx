@@ -63,26 +63,22 @@ const NavBar = () => {
     {
       key: 'logout',
       label: (
-        <span 
-          role="button"
-          tabIndex={0}
+        <button
           onClick={logoutWithRedirect}
-          onKeyDown={(e) => {
-            if (e.key === 'Enter' || e.key === ' ') {
-              logoutWithRedirect();
-            }
-          }}  
+          disabled={isLoggingOut}
           style={{
+            all: 'unset', // resets button appearance
             color: isLoggingOut ? '#aaa' : undefined,
             cursor: isLoggingOut ? 'not-allowed' : 'pointer',
             display: 'flex',
             alignItems: 'center',
-            pointerEvents: isLoggingOut ? 'none' : 'auto',
+            padding: 0,
+            width: '100%',
           }}
         >
           <LogoutOutlined style={{ marginRight: 8 }} />
           {isLoggingOut ? 'Logging out...' : 'Log out'}
-        </span>
+        </button>
       ),
     },
   ];
