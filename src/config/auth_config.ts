@@ -17,6 +17,8 @@ const onRedirectCallback = (appState?: AppState) => {
   window.history.replaceState({}, document.title, target);
 };
 
+const isProd = window.location.hostname.includes('github.io');
+
 export const providerConfig = {
   ...getConfig(),
   onRedirectCallback,
@@ -24,7 +26,9 @@ export const providerConfig = {
   useRefreshTokens: true,
   useRefreshTokensFallback: true,
   authorizationParams: {
-    redirect_uri: window.location.origin,
+    redirect_uri: isProd
+    ? `${window.location.origin}/${config.app}`
+    : window.location.origin,
     ...(config.auth.audience ? { audience: config.auth.audience } : {}),
   },
 };
