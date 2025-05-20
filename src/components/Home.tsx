@@ -7,27 +7,25 @@ import { motion, AnimatePresence } from 'framer-motion';
 const { Title, Paragraph, Text } = Typography;
 
 const Home = () => {
-  const { isAuthenticated, loginWithRedirect, getIdTokenClaims } = useAuth0();
+  const { isAuthenticated, loginWithRedirect, getAccessTokenSilently } = useAuth0();
   const [jwt, setJwt] = useState<string | null>(null);
   const [copyState, setCopyState] = useState<'copy' | 'copied' | 'failed'>('copy');
   const [showToken, setShowToken] = useState(false);
 
   useEffect(() => {
-    const fetchToken = async () => {
+    const fetchAccessToken = async () => {
       try {
-        const token = await getIdTokenClaims();
-        if (token?.__raw) {
-          setJwt(token.__raw);
-        }
+        const token = await getAccessTokenSilently();
+        setJwt(token);
       } catch (err) {
-        console.error('❌ Failed to retrieve token', err);
+        console.error('❌ Failed to retrieve access token', err);
       }
     };
 
     if (isAuthenticated) {
-      fetchToken();
+      fetchAccessToken();
     }
-  }, [getIdTokenClaims, isAuthenticated]);
+  }, [getAccessTokenSilently, isAuthenticated]);
 
   const handleCopy = async () => {
     if (jwt) {
