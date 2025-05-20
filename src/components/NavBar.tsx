@@ -64,7 +64,14 @@ const NavBar = () => {
       key: 'logout',
       label: (
         <span 
-          onClick={logoutWithRedirect}   
+          role="button"
+          tabIndex={0}
+          onClick={logoutWithRedirect}
+          onKeyDown={(e) => {
+            if (e.key === 'Enter' || e.key === ' ') {
+              logoutWithRedirect();
+            }
+          }}  
           style={{
             color: isLoggingOut ? '#aaa' : undefined,
             cursor: isLoggingOut ? 'not-allowed' : 'pointer',

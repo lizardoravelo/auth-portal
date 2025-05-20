@@ -13,7 +13,7 @@ export function getConfig() {
 
 const onRedirectCallback = (appState?: AppState) => {
   // Cleans up URL and restores path
-  const target = appState?.returnTo || window.location.pathname;
+  const target = appState?.returnTo ?? window.location.pathname;
   window.history.replaceState({}, document.title, target);
 };
 

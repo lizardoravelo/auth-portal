@@ -16,7 +16,7 @@ const Home = () => {
     const fetchToken = async () => {
       try {
         const token = await getIdTokenClaims();
-        if (token && token.__raw) {
+        if (token?.__raw) {
           setJwt(token.__raw);
         }
       } catch (err) {
