@@ -16,7 +16,7 @@ const Profile = () => {
     }
   }, [isAuthenticated, user, navigate]);
 
-  const roles = user?.[`${config.auth.namespace}roles`] || [];
+  const roles = user?.[`${config.auth.namespace}roles`] ?? [];
 
   return (
     <Card 
