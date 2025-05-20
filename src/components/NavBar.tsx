@@ -35,7 +35,7 @@ const NavBar = () => {
     setIsLoggingOut(true); 
     setTimeout(() => {
       logout({
-        logoutParams: { returnTo: window.location.origin + `/${config.app}` },
+        logoutParams: { returnTo: window.location.origin + `/${config.app}/` },
       });
     }, 300);
   };
