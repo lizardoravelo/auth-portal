@@ -20,6 +20,7 @@ import {
 import { useAuth0 } from '@auth0/auth0-react';
 import type { MenuProps } from 'antd';
 import Loading from '@components/Loading';
+import config from '@config/constants';
 
 const { Header } = Layout;
 const { useBreakpoint } = Grid;
@@ -34,7 +35,7 @@ const NavBar = () => {
     setIsLoggingOut(true); 
     setTimeout(() => {
       logout({
-        logoutParams: { returnTo: window.location.origin },
+        logoutParams: { returnTo: window.location.origin + `/${config.app}` },
       });
     }, 300);
   };
